@@ -4,7 +4,7 @@ import { EmailService } from './app.service';
 @Controller('email')
 export class EmailController {
   constructor(private readonly emailService: EmailService) {}
-//send email using twillio
+  //send email using twillio
   @Post('send')
   async sendEmail(
     @Body('to') to: string,
@@ -19,5 +19,12 @@ export class EmailController {
   @Get('templates')
   async getTemplates() {
     await this.emailService.getTemplates();
+  }
+
+  //webhook
+  @Post('webhook')
+  async sendEmail1(@Body() data: string): Promise<{ message: string }> {
+    console.log(data);
+    return { message: 'webhook' };
   }
 }

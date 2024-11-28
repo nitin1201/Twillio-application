@@ -1,8 +1,6 @@
 import { Body, Injectable } from '@nestjs/common';
 import * as client from '@sendgrid/client';
 import * as sgMail from '@sendgrid/mail';
-import axios from 'axios';
-
 @Injectable()
 export class EmailService {
   constructor() {
@@ -23,7 +21,6 @@ export class EmailService {
       html,
       templateId: process.env.Template_ID,
     };
-
     try {
       const response = await sgMail.send(msg);
       console.log('Email sent successfully', response);
